@@ -12,15 +12,9 @@ cask "dockpals" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "DockPals.app"
-
-  # The app is ad-hoc signed but not notarized.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/DockPals.app"]
-  end
 
   uninstall quit: "io.github.strahlenguy.DockPals"
 
